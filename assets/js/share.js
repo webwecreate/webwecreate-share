@@ -72,87 +72,11 @@
             url:   null,
         },
     ];
-    // ---- Inject CSS ครั้งเดียว ----
-    function injectStyles() {
-        if ( document.getElementById( 'wwc-share-styles' ) ) return;
-        const css = `
-            #wwc-share-overlay {
-                position: fixed; inset: 0; z-index: 99999;
-                background: rgba(0,0,0,.5);
-                display: flex; align-items: flex-end; justify-content: center;
-                padding-bottom: env(safe-area-inset-bottom, 0);
-                animation: wwcFadeIn .2s ease;
-            }
-            @keyframes wwcFadeIn { from { opacity:0 } to { opacity:1 } }
-            #wwc-share-modal {
-                background: #fff; border-radius: 16px 16px 0 0;
-                width: 100%; max-width: 480px;
-                padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0));
-                animation: wwcSlideUp .25s ease;
-            }
-            @keyframes wwcSlideUp { from { transform:translateY(60px); opacity:0 } to { transform:translateY(0); opacity:1 } }
-            #wwc-share-modal h3 {
-                margin: 0 0 16px; font-size: 16px; font-weight: 600;
-                text-align: center; color: #111;
-            }
-            .wwc-share-grid {
-                display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-                margin-bottom: 16px;
-            }
-            .wwc-share-platform {
-                display: flex; flex-direction: column; align-items: center; gap: 6px;
-                background: none; border: none; cursor: pointer; padding: 0;
-            }
-            .wwc-share-platform .wwc-icon-wrap {
-                width: 52px; height: 52px; border-radius: 50%;
-                display: flex; align-items: center; justify-content: center;
-                transition: transform .15s;
-            }
-            .wwc-share-platform:hover .wwc-icon-wrap,
-            .wwc-share-platform:active .wwc-icon-wrap { transform: scale(1.1); }
-            .wwc-share-platform svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-            .wwc-share-platform[data-id="copy"] svg { /* copy icon ใช้ path สาย */ }
-            .wwc-share-platform span { font-size: 11px; color: #555; }
-            #wwc-share-close {
-                width: 100%; padding: 12px; border: 1.5px solid #e5e7eb;
-                border-radius: 10px; background: none; cursor: pointer;
-                font-size: 14px; color: #374151; font-weight: 500;
-                transition: background .15s;
-            }
-            #wwc-share-close:hover { background: #f3f4f6; }
-            .wwc-copied-badge {
-                display: inline-block; background: #10b981; color: #fff;
-                font-size: 11px; padding: 2px 8px; border-radius: 20px;
-                margin-left: 6px; vertical-align: middle;
-            }
-        `;
-        const el = document.createElement( 'style' );
-        el.id = 'wwc-share-styles';
-        el.textContent = css;
-        document.head.appendChild( el );
-    }
 
     function showToast( msg ) {
         document.querySelector( '.wwc-toast' )?.remove();
         const toast = document.createElement( 'div' );
             toast.className = 'wwc-toast';
-                Object.assign( toast.style, {
-                    position:     'fixed',
-                    bottom:       '80px',
-                    left:         '50%',
-                    transform:    'translateX(-50%)',
-                    background:   '#1f2937',
-                    color:        '#fff',
-                    padding:      '10px 18px',
-                    borderRadius: '8px',
-                    fontSize:     '13px',
-                    zIndex:       '999999',
-                    textAlign:    'center',
-                    maxWidth:     '280px',
-                    lineHeight:   '1.4',
-                    animation:    'wwcFadeIn .2s ease',
-                } );
-
             toast.textContent = msg;
                 document.body.appendChild( toast );
                 setTimeout( () => toast.remove(), 3000 );
