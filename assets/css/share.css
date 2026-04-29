@@ -1,3 +1,30 @@
+/**
+ * share.css — WebWeCreate Share
+ *
+ * @package WebWeCreate_Share
+ * @version 1.1.0
+ * @since   1.0.0
+ *
+ * Changelog:
+ *   1.1.0 — รวม share button styles จาก portfolio.css เข้ามาที่นี่ที่เดียว
+ *           ลบ animation: wwcSlideUp ออกจาก hover (สาเหตุปุ่มกระพริบ)
+ *           ลบ dead code .wwcg-share ที่ซ้ำซ้อนจาก live CSS เวอร์ชันเก่า
+ *   1.0.0 — Initial release
+ *
+ * Class index:
+ *   Modal / Overlay     — #wwc-share-overlay, #wwc-share-modal
+ *   Platform grid       — .wwc-share-grid, .wwc-share-platform, .wwc-icon-wrap
+ *   Toast               — .wwc-toast
+ *   Copied badge        — .wwc-copied-badge
+ *   Portfolio btn       — .wwc-share-btn  (used in pf-work-card)
+ *   Gallery circle btn  — .wwcg-share     (used in wwc_gallery shortcode)
+ *   WooGallery inject   — .wcgs-share-bar, .wcgs-share-btn
+ */
+
+/* =============================================================================
+   1. Modal Overlay
+   ============================================================================= */
+
 #wwc-share-overlay {
     position: fixed;
     inset: 0;
@@ -14,6 +41,10 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+/* =============================================================================
+   2. Modal Sheet
+   ============================================================================= */
 
 #wwc-share-modal {
     background: #fff;
@@ -36,6 +67,10 @@
     text-align: center;
     color: #111;
 }
+
+/* =============================================================================
+   3. Platform Grid
+   ============================================================================= */
 
 .wwc-share-grid {
     display: grid;
@@ -85,6 +120,10 @@
     color: #555;
 }
 
+/* =============================================================================
+   4. Close Button
+   ============================================================================= */
+
 #wwc-share-close {
     width: 100%;
     padding: 12px;
@@ -102,6 +141,10 @@
     background: #f3f4f6;
 }
 
+/* =============================================================================
+   5. Copied Badge & Toast
+   ============================================================================= */
+
 .wwc-copied-badge {
     display: inline-block;
     background: #10b981;
@@ -113,7 +156,6 @@
     vertical-align: middle;
 }
 
-/* Toast */
 .wwc-toast {
     position: fixed;
     bottom: 80px;
@@ -130,3 +172,95 @@
     line-height: 1.4;
     animation: wwcFadeIn .2s ease;
 }
+
+
+/* Section 6 — Universal Share Button */
+.wwc-share-btn {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #aaa;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, transform 0.2s ease;
+}
+
+.wwc-share-btn:hover {
+    color: #000;
+    background: transparent !important;
+    transform: translateY(-3px);
+}
+
+/* =============================================================================
+   7. Gallery Circle Share Button (.wwcg-share)
+   ใช้ใน [wwc_gallery] shortcode ใน .wwcg-slide-info
+   ============================================================================= */
+
+/*.wwcg-share {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s ease;
+}
+
+.wwcg-share:hover {
+    background: transparent !important;
+    transform: translateY(-3px);
+}
+
+.wwcg-share img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    display: block;
+}
+
+
+.wwcg-share:not(:has(img))::before,
+.wwcg-share:empty::before {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url("/wp-content/uploads/2026/04/upload.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}*/
+
+/* =============================================================================
+   8. WooGallery Inject Share Button (.wcgs-share-btn)
+   inject โดย wcgs-share-inject.js เข้าใน .wcgs-carousel
+   ============================================================================= */
+
+.wcgs-share-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 10px 0;
+}
+
+/*.wcgs-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.wcgs-share-btn:hover {
+	background: transparent !important;
+    transform: translateY(-3px);
+}*/

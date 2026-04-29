@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WebWeCreate Share
  * Description: Web Share API + clipboard fallback for .pf-share-btn
- * Version: 1.0.0
+ * Version: 1.0.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -21,6 +21,16 @@ function wwc_share_enqueue() {
         '1.0.0',
         true
     );
+
+    if ( function_exists( 'is_product' ) && is_product() ) {
+        wp_enqueue_script(
+            'wcgs-share-inject',
+            plugin_dir_url( __FILE__ ) . 'assets/js/wcgs-share-inject.js',
+            [ 'wwc-share' ],   // โหลดหลัง share.js
+            '1.0.0',
+            true
+        );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'wwc_share_enqueue' );
 
